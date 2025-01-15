@@ -268,7 +268,8 @@ class ResidualFLBScheduler(Scheduler):
                         # enqueue succ with priority lmt in lmt_ep_tasks[ep]
                         lmt_ep_tasks[enabling_proc].put((lmt, succ))
 
-            while len(scheduled_tasks) < len(task_graph.nodes):
+            # while len(scheduled_tasks) < len(task_graph.nodes):
+            while set(task_graph.nodes).issubset(set(scheduled_tasks.keys())) == False:
                 task, proc = schedule_task()
                 update_task_lists(task, proc)
                 update_proc_lists(task, proc)
