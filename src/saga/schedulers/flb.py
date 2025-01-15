@@ -61,7 +61,7 @@ class FLBScheduler(Scheduler):
         def getLMT(task: Hashable) -> float: # pylint: disable=invalid-name
             """Get the Last Message Arrival Time (LMT)
 
-            NOTE: Because this original algorithm assumes homogenous comp/comm speeds, we will
+            NOTE: Because the original algorithm assumes homogenous comp/comm speeds, we will
             modify it to use the *actual* communication time between the tasks, rather than
             assume they are all equal to the average communication time.
 
