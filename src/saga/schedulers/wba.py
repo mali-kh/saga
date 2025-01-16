@@ -115,5 +115,8 @@ class WBAScheduler(Scheduler): # pylint: disable=too-few-public-methods
                 available_tasks.remove(sched_task)
 
                 clear_caches()
-
+        # fill empty nodes with empty list
+        for node in network.nodes:
+            if node not in schedule:
+                schedule[node] = []
         return schedule

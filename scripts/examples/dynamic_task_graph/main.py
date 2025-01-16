@@ -15,6 +15,15 @@ from saga.schedulers.duplex import DuplexScheduler
 from saga.schedulers.etf import ETFScheduler
 from saga.schedulers.fastest_node import FastestNodeScheduler
 from saga.schedulers.fcp import FCPScheduler
+from saga.schedulers.flb import FLBScheduler
+from saga.schedulers.gdl import GDLScheduler
+from saga.schedulers.hbmct import HbmctScheduler
+from saga.schedulers.mct import MCTScheduler
+from saga.schedulers.met import METScheduler
+from saga.schedulers.msbc import MsbcScheduler
+from saga.schedulers.olb import OLBScheduler
+from saga.schedulers.sufferage import SufferageScheduler
+from saga.schedulers.wba import WBAScheduler
 
 from saga.schedulers.residual.rheft import ResidualHeftScheduler
 # from saga.schedulers.dynamic_task_graph.baseline.heft import BaselineHeftScheduler
@@ -28,6 +37,15 @@ from saga.schedulers.residual.rduplex import ResidualDuplexScheduler
 from saga.schedulers.residual.retf import ResidualETFScheduler
 from saga.schedulers.residual.rfastest_node import ResidualFastestNodeScheduler
 from saga.schedulers.residual.rfcp import ResidualFCPScheduler
+from saga.schedulers.residual.rflb import ResidualFLBScheduler
+from saga.schedulers.residual.rgdl import ResidualGDLScheduler
+from saga.schedulers.residual.rhbmct import ResidualHbmctScheduler
+from saga.schedulers.residual.rmct import ResidualMCTScheduler
+from saga.schedulers.residual.rmet import ResidualMETScheduler
+from saga.schedulers.residual.rmsbc import ResidualMsbcScheduler
+from saga.schedulers.residual.rolb import ResidualOLBScheduler
+from saga.schedulers.residual.rsufferage import ResidualSufferageScheduler
+from saga.schedulers.residual.rwba import ResidualWBAScheduler
 
 from saga.utils.draw import draw_gantt, draw_network, draw_task_graph
 from saga.utils.tools import get_insert_loc
@@ -203,7 +221,7 @@ def get_random_network() -> nx.Graph:
 
 def get_random_task_graph() -> nx.DiGraph:
     choice = random.choice(["chain", "fork", "diamond", "branching"])
-    choice = random.choice(["branching"])
+    # choice = random.choice(["branching"])
 
     if choice == "chain":
         task_graph = get_chain_dag(
@@ -249,7 +267,7 @@ def main():
 
     network = get_random_network()
 
-    num_task_graphs = 1
+    num_task_graphs = 3
     task_graphs = []  
 
     for i in range(num_task_graphs):
@@ -279,6 +297,15 @@ def main():
 
 
     # residual schedulers
+    residualWBAScheduler = ResidualWBAScheduler()
+    residualSufferageScheduler = ResidualSufferageScheduler()
+    residualOLBScheduler = ResidualOLBScheduler()
+    residualMsbcScheduler = ResidualMsbcScheduler()
+    residualMETScheduler = ResidualMETScheduler()
+    residualMCTScheduler = ResidualMCTScheduler()
+    residualHbmctScheduler = ResidualHbmctScheduler()
+    residualGDLScheduler = ResidualGDLScheduler()
+    residualFLBScheduler = ResidualFLBScheduler()
     residualHeftScheduler = ResidualHeftScheduler()
     residualBILScheduler = ResidualBILScheduler()
     residualCpopScheduler = ResidualCpopScheduler()
@@ -291,6 +318,17 @@ def main():
     residualFCPScheduler = ResidualFCPScheduler()
     # residualBruteForceScheduler = ResidualBruteForceScheduler()
 
+
+    # non-residual schedulers
+    wbaScheduler = WBAScheduler()
+    sufferageScheduler = SufferageScheduler()
+    olbScheduler = OLBScheduler()
+    msbcScheduler = MsbcScheduler()
+    metScheduler = METScheduler()
+    mctScheduler = MCTScheduler()
+    hbmcScheduler = HbmctScheduler()
+    gdlscheduler = GDLScheduler()
+    flbScheduler = FLBScheduler()
     heftScheduler = HeftScheduler()
     bilScheduler = BILScheduler()
     cpopScheduler = CpopScheduler()
@@ -301,6 +339,7 @@ def main():
     etfScheduler = ETFScheduler()
     fastestNodeScheduler = FastestNodeScheduler()
     fcpScheduler = FCPScheduler()
+
     # bruteForceScheduler = BruteForceScheduler()
 
 
@@ -312,6 +351,14 @@ def main():
 
 
     # residual schedulers
+    residualWBASchedule = residualWBAScheduler.schedule(network, task_graphs)
+    residualSufferageSchedule = residualSufferageScheduler.schedule(network, task_graphs)
+    residualOLBSchedule = residualOLBScheduler.schedule(network, task_graphs)
+    residualMsbcSchedule = residualMsbcScheduler.schedule(network, task_graphs)
+    residualMETSchedule = residualMETScheduler.schedule(network, task_graphs)
+    residualMCTSchedule = residualMCTScheduler.schedule(network, task_graphs)
+    residualHbmctSchedule = residualHbmctScheduler.schedule(network, task_graphs)
+    residualGDLSchedule = residualGDLScheduler.schedule(network, task_graphs)
     residualHeftSchedule = residualHeftScheduler.schedule(network, task_graphs)
     residualBILSchedule = residualBILScheduler.schedule(network, task_graphs)
     residualCpopSchedule = residualCpopScheduler.schedule(network, task_graphs)
@@ -322,9 +369,18 @@ def main():
     residualETFSchedule = residualETFScheduler.schedule(network, task_graphs)
     residualFastestNodeSchedule = residualFastestNodeScheduler.schedule(network, task_graphs)
     residualFCPSchedule = residualFCPScheduler.schedule(network, task_graphs)
+    residualFLBSchedule = residualFLBScheduler.schedule(network, task_graphs)
     # residualBruteForceSchedule = residualBruteForceScheduler.schedule(network, task_graphs)
 
     # non-residual schedulers
+    wbaSchedule = wbaScheduler.schedule(network, task_graphs[0][0])
+    sufferageSchedule = sufferageScheduler.schedule(network, task_graphs[0][0])
+    olbSchedule = olbScheduler.schedule(network, task_graphs[0][0])
+    msbcSchedule = msbcScheduler.schedule(network, task_graphs[0][0])
+    metSchedule = metScheduler.schedule(network, task_graphs[0][0])
+    mctSchedule = mctScheduler.schedule(network, task_graphs[0][0])
+    hbmcSchedule = hbmcScheduler.schedule(network, task_graphs[0][0])
+    gdlschedule = gdlscheduler.schedule(network, task_graphs[0][0])
     bilSchedule = bilScheduler.schedule(network, task_graphs[0][0])
     heftSchedule = heftScheduler.schedule(network, task_graphs[0][0])
     cpopSchedule = cpopScheduler.schedule(network, task_graphs[0][0])
@@ -335,6 +391,7 @@ def main():
     etfSchedule = etfScheduler.schedule(network, task_graphs[0][0])
     fastestNodeSchedule = fastestNodeScheduler.schedule(network, task_graphs[0][0])
     fcpSchedule = fcpScheduler.schedule(network, task_graphs[0][0])
+    flbSchedule = flbScheduler.schedule(network, task_graphs[0][0])
     # bruteForceSchedule = bruteForceScheduler.schedule(network, task_graphs[0][0])
 
     #  baseline schedule
@@ -342,6 +399,14 @@ def main():
 
 
     # draw residual schedules
+    draw_schedule(residualWBASchedule, "R_WBA_schedule")
+    draw_schedule(residualSufferageSchedule, "R_Sufferage_schedule")
+    draw_schedule(residualOLBSchedule, "R_OLB_schedule")
+    draw_schedule(residualMsbcSchedule, "R_MSBC_schedule")
+    draw_schedule(residualMETSchedule, "R_MET_schedule")
+    draw_schedule(residualMCTSchedule, "R_MCT_schedule")
+    draw_schedule(residualHbmctSchedule, "R_HBMCT_schedule")
+    draw_schedule(residualGDLSchedule, "R_GDL_schedule")
     draw_schedule(residualHeftSchedule, "R_HEFT_schedule")
     draw_schedule(residualBILSchedule, "R_BIL_schedule")
     draw_schedule(residualCpopSchedule, "R_CPOP_schedule")
@@ -352,9 +417,19 @@ def main():
     draw_schedule(residualETFSchedule, "R_ETF_schedule")
     draw_schedule(residualFastestNodeSchedule, "R_FastestNode_schedule")
     draw_schedule(residualFCPSchedule, "R_FCP_schedule")
+    draw_schedule(residualFLBSchedule, "R_FLB_schedule")
+
     # draw_schedule(residualBruteForceSchedule, "R_BF_schedule")
 
     # draw non-residual schedules
+    draw_schedule(wbaSchedule, "WBA_schedule")
+    draw_schedule(sufferageSchedule, "Sufferage_schedule")
+    draw_schedule(olbSchedule, "OLB_schedule")
+    draw_schedule(msbcSchedule, "MSBC_schedule")
+    draw_schedule(metSchedule, "MET_schedule")
+    draw_schedule(mctSchedule, "MCT_schedule")
+    draw_schedule(hbmcSchedule, "HBMCT_schedule")
+    draw_schedule(gdlschedule, "GDL_schedule")
     draw_schedule(bilSchedule, "BIL_schedule")
     draw_schedule(heftSchedule, "HEFT_schedule")
     draw_schedule(cpopSchedule, "CPOP_schedule")
@@ -365,13 +440,14 @@ def main():
     draw_schedule(etfSchedule, "ETF_schedule")
     draw_schedule(fastestNodeSchedule, "FastestNode_schedule")
     draw_schedule(fcpSchedule, "FCP_schedule")
+    draw_schedule(flbSchedule, "FLB_schedule")
     # draw_schedule(bruteForceSchedule, "BF_schedule")
     
                   
     # baseline schedule
     # draw_schedule(baselineHeftSchedule, "baseline_HEFT_schedule")
 
-    # print maximum makespan for each schedule
+    # print maximum makespan for each scheduler
     print(f'Residual HEFT Makespan: {max([0 if not tasks else tasks[-1].end for tasks in residualHeftSchedule.values()])}')
     print(f'Residual BIL Makespan: {max([0 if not tasks else tasks[-1].end for tasks in residualBILSchedule.values()])}')
     print(f'Residual CPOP Makespan: {max([0 if not tasks else tasks[-1].end for tasks in residualCpopSchedule.values()])}')
@@ -382,6 +458,15 @@ def main():
     print(f'Residual ETF Makespan: {max([0 if not tasks else tasks[-1].end for tasks in residualETFSchedule.values()])}')
     print(f'Residual FastestNode Makespan: {max([0 if not tasks else tasks[-1].end for tasks in residualFastestNodeSchedule.values()])}')
     print(f'Residual FCP Makespan: {max([0 if not tasks else tasks[-1].end for tasks in residualFCPSchedule.values()])}')
+    print(f'Residual FLB Makespan: {max([0 if not tasks else tasks[-1].end for tasks in residualFLBSchedule.values()])}')
+    print(f'Residual GDL Makespan: {max([0 if not tasks else tasks[-1].end for tasks in residualGDLSchedule.values()])}')
+    print(f'Residual HBMCT Makespan: {max([0 if not tasks else tasks[-1].end for tasks in residualHbmctSchedule.values()])}')
+    print(f'Residual MCT Makespan: {max([0 if not tasks else tasks[-1].end for tasks in residualMCTSchedule.values()])}')
+    print(f'Residual MET Makespan: {max([0 if not tasks else tasks[-1].end for tasks in residualMETSchedule.values()])}')
+    print(f'Residual MSBC Makespan: {max([0 if not tasks else tasks[-1].end for tasks in residualMsbcSchedule.values()])}')
+    print(f'Residual OLB Makespan: {max([0 if not tasks else tasks[-1].end for tasks in residualOLBSchedule.values()])}')
+    print(f'Residual Sufferage Makespan: {max([0 if not tasks else tasks[-1].end for tasks in residualSufferageSchedule.values()])}')
+    print(f'Residual WBA Makespan: {max([0 if not tasks else tasks[-1].end for tasks in residualWBASchedule.values()])}')
 
     # print makespan for each non-residual scheduler
     print(f'HEFT Makespan: {max([0 if not tasks else tasks[-1].end for tasks in heftSchedule.values()])}')
@@ -394,6 +479,15 @@ def main():
     print(f'ETF Makespan: {max([0 if not tasks else tasks[-1].end for tasks in etfSchedule.values()])}')
     print(f'FastestNode Makespan: {max([0 if not tasks else tasks[-1].end for tasks in fastestNodeSchedule.values()])}')
     print(f'FCP Makespan: {max([0 if not tasks else tasks[-1].end for tasks in fcpSchedule.values()])}')
+    print(f'FLB Makespan: {max([0 if not tasks else tasks[-1].end for tasks in flbSchedule.values()])}')
+    print(f'GDL Makespan: {max([0 if not tasks else tasks[-1].end for tasks in gdlschedule.values()])}')
+    print(f'HBMCT Makespan: {max([0 if not tasks else tasks[-1].end for tasks in hbmcSchedule.values()])}')
+    print(f'MCT Makespan: {max([0 if not tasks else tasks[-1].end for tasks in mctSchedule.values()])}')
+    print(f'MET Makespan: {max([0 if not tasks else tasks[-1].end for tasks in metSchedule.values()])}')
+    print(f'MSBC Makespan: {max([0 if not tasks else tasks[-1].end for tasks in msbcSchedule.values()])}')
+    print(f'OLB Makespan: {max([0 if not tasks else tasks[-1].end for tasks in olbSchedule.values()])}')
+    print(f'Sufferage Makespan: {max([0 if not tasks else tasks[-1].end for tasks in sufferageSchedule.values()])}')
+    print(f'WBA Makespan: {max([0 if not tasks else tasks[-1].end for tasks in wbaSchedule.values()])}')
 
     # baseline makespan
     # print(f'Baseline HEFT Makespan: {max([0 if not tasks else tasks[-1].end for tasks in baselineHeftSchedule.values()])}')
