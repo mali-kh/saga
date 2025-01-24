@@ -9,7 +9,7 @@ from networkx import DiGraph, Graph
 
 from saga.scheduler import Task
 
-from ...scheduler import Scheduler, Task
+from ....scheduler import Scheduler, Task
 
 
 class ResidualFLBScheduler(Scheduler):

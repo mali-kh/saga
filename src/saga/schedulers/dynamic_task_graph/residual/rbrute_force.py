@@ -4,7 +4,7 @@ import copy
 
 import networkx as nx
 
-from ...scheduler import Scheduler, Task, ResidualScheduler
+from ....scheduler import Scheduler, Task, ResidualScheduler
 
 
 class ResidualBruteForceScheduler(ResidualScheduler):

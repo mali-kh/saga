@@ -3,7 +3,7 @@ from typing import Dict, Hashable, List, Tuple
 
 import networkx as nx
 
-from ...scheduler import Scheduler, Task
+from ....scheduler import Scheduler, Task
 
 
 class ResidualMCTScheduler(Scheduler): # pylint: disable=too-few-public-methods

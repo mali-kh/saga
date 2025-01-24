@@ -4,8 +4,8 @@ from typing import Dict, Hashable, List, Tuple, Optional
 import networkx as nx
 import numpy as np
 
-from ...scheduler import Scheduler, Task
-from ...utils.tools import get_insert_loc
+from ....scheduler import Scheduler, Task
+from ....utils.tools import get_insert_loc
 
 
 def calulate_sbct(

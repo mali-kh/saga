@@ -4,8 +4,8 @@ from typing import Dict, Hashable, List, Tuple
 import networkx as nx
 import numpy as np
 
-from ...scheduler import Scheduler, Task
-from ...utils.tools import check_instance_simple, get_insert_loc
+from ....scheduler import Scheduler, Task
+from ....utils.tools import check_instance_simple, get_insert_loc
 thisdir = pathlib.Path(__file__).resolve().parent
 
 

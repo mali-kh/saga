@@ -4,7 +4,7 @@ from typing import Dict, Hashable, List, Tuple
 import networkx as nx
 import numpy as np
 
-from ...scheduler import Scheduler, Task
+from ....scheduler import Scheduler, Task
 
 
 class ResidualGDLScheduler(Scheduler):

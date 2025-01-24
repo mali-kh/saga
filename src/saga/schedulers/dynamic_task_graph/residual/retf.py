@@ -5,8 +5,8 @@ import numpy as np
 
 from saga.scheduler import Task
 
-from ...scheduler import Task
-from ...scheduler import Scheduler
+from ....scheduler import Task
+from ....scheduler import Scheduler
 
 
 class ResidualETFScheduler(Scheduler): # pylint: disable=too-few-public-methods

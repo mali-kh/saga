@@ -3,7 +3,7 @@ from typing import Dict, Hashable, List, Optional, Set, Tuple
 
 import networkx as nx
 
-from ...scheduler import Scheduler, Task
+from ....scheduler import Scheduler, Task
 
 def get_mcp_priorities(network: nx.Graph, task_graph: nx.DiGraph) -> Dict[Hashable, float]:
     """Returns the priorities of the tasks on the network

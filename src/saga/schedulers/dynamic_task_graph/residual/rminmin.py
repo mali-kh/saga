@@ -4,7 +4,7 @@ from typing import Dict, Hashable, List, Tuple
 
 import networkx as nx
 
-from ...scheduler import Scheduler, Task
+from ....scheduler import Scheduler, Task
 
 
 class ResidualMinMinScheduler(Scheduler):

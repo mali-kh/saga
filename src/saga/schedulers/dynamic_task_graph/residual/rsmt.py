@@ -8,7 +8,7 @@ from pysmt.typing import REAL
 
 from saga.scheduler import Task
 
-from ...scheduler import Scheduler, Task
+from ....scheduler import Scheduler, Task
 
 
 class ResidualSMTScheduler(Scheduler):

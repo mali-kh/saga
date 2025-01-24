@@ -4,8 +4,8 @@ from typing import Dict, Hashable, List, Tuple, Optional
 import networkx as nx
 import numpy as np
 
-from ...scheduler import Scheduler, Task
-from ..heft import heft_rank_sort
+from ....scheduler import Scheduler, Task
+from ...heft import heft_rank_sort
 
 def hbmct_rank_sort(network: nx.Graph, task_graph: nx.DiGraph) -> List[Hashable]:    
     """Sort tasks based on their rank (as defined in the HEFT paper).

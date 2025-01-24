@@ -5,8 +5,8 @@ from typing import Dict, Hashable, List, Tuple
 import networkx as nx
 import numpy as np
 
-from ...scheduler import Scheduler, Task
-from ...utils.tools import get_insert_loc
+from ....scheduler import Scheduler, Task
+from ....utils.tools import get_insert_loc
 
 def upward_rank(network: nx.Graph, task_graph: nx.DiGraph) -> Dict[Hashable, float]:
     """Computes the upward rank of the tasks in the task graph."""

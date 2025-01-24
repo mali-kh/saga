@@ -25,27 +25,27 @@ from saga.schedulers.olb import OLBScheduler
 from saga.schedulers.sufferage import SufferageScheduler
 from saga.schedulers.wba import WBAScheduler
 
-from saga.schedulers.residual.rheft import ResidualHeftScheduler
+from saga.schedulers.dynamic_task_graph.residual.rheft import ResidualHeftScheduler
 # from saga.schedulers.dynamic_task_graph.baseline.heft import BaselineHeftScheduler
-from saga.schedulers.residual.rbil import ResidualBILScheduler
-from saga.schedulers.residual.rbrute_force import ResidualBruteForceScheduler
-from saga.schedulers.residual.rcpop import ResidualCpopScheduler
-from saga.schedulers.residual.rdps import ResidualDPSScheduler
-from saga.schedulers.residual.rminmin import ResidualMinMinScheduler
-from saga.schedulers.residual.rmaxmin import ResidualMaxMinScheduler
-from saga.schedulers.residual.rduplex import ResidualDuplexScheduler
-from saga.schedulers.residual.retf import ResidualETFScheduler
-from saga.schedulers.residual.rfastest_node import ResidualFastestNodeScheduler
-from saga.schedulers.residual.rfcp import ResidualFCPScheduler
-from saga.schedulers.residual.rflb import ResidualFLBScheduler
-from saga.schedulers.residual.rgdl import ResidualGDLScheduler
-from saga.schedulers.residual.rhbmct import ResidualHbmctScheduler
-from saga.schedulers.residual.rmct import ResidualMCTScheduler
-from saga.schedulers.residual.rmet import ResidualMETScheduler
-from saga.schedulers.residual.rmsbc import ResidualMsbcScheduler
-from saga.schedulers.residual.rolb import ResidualOLBScheduler
-from saga.schedulers.residual.rsufferage import ResidualSufferageScheduler
-from saga.schedulers.residual.rwba import ResidualWBAScheduler
+from saga.schedulers.dynamic_task_graph.residual.rbil import ResidualBILScheduler
+from saga.schedulers.dynamic_task_graph.residual.rbrute_force import ResidualBruteForceScheduler
+from saga.schedulers.dynamic_task_graph.residual.rcpop import ResidualCpopScheduler
+from saga.schedulers.dynamic_task_graph.residual.rdps import ResidualDPSScheduler
+from saga.schedulers.dynamic_task_graph.residual.rminmin import ResidualMinMinScheduler
+from saga.schedulers.dynamic_task_graph.residual.rmaxmin import ResidualMaxMinScheduler
+from saga.schedulers.dynamic_task_graph.residual.rduplex import ResidualDuplexScheduler
+from saga.schedulers.dynamic_task_graph.residual.retf import ResidualETFScheduler
+from saga.schedulers.dynamic_task_graph.residual.rfastest_node import ResidualFastestNodeScheduler
+from saga.schedulers.dynamic_task_graph.residual.rfcp import ResidualFCPScheduler
+from saga.schedulers.dynamic_task_graph.residual.rflb import ResidualFLBScheduler
+from saga.schedulers.dynamic_task_graph.residual.rgdl import ResidualGDLScheduler
+from saga.schedulers.dynamic_task_graph.residual.rhbmct import ResidualHbmctScheduler
+from saga.schedulers.dynamic_task_graph.residual.rmct import ResidualMCTScheduler
+from saga.schedulers.dynamic_task_graph.residual.rmet import ResidualMETScheduler
+from saga.schedulers.dynamic_task_graph.residual.rmsbc import ResidualMsbcScheduler
+from saga.schedulers.dynamic_task_graph.residual.rolb import ResidualOLBScheduler
+from saga.schedulers.dynamic_task_graph.residual.rsufferage import ResidualSufferageScheduler
+from saga.schedulers.dynamic_task_graph.residual.rwba import ResidualWBAScheduler
 
 from saga.utils.draw import draw_gantt, draw_network, draw_task_graph
 from saga.utils.tools import get_insert_loc

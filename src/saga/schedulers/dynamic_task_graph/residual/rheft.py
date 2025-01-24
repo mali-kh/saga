@@ -5,9 +5,9 @@ from typing import Dict, Hashable, List, Tuple, Optional
 import networkx as nx
 import numpy as np
 
-from ...scheduler import Scheduler, Task, ResidualScheduler
-from ...utils.tools import get_insert_loc
-from ..cpop import upward_rank
+from ....scheduler import Scheduler, Task, ResidualScheduler
+from ....utils.tools import get_insert_loc
+from ...cpop import upward_rank
 
 thisdir = pathlib.Path(__file__).resolve().parent
 
