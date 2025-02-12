@@ -92,10 +92,13 @@ class InsertTask(ABC):
 class ParametricScheduler(Scheduler):
     def __init__(self,
                  initial_priority: IntialPriority,
-                 insert_task: InsertTask) -> None:
+                 insert_task: InsertTask,
+                 cumulative: bool = False
+                 ) -> None:
             super().__init__()
             self.initial_priority = initial_priority
             self.insert_task = insert_task
+            self.cumulative = cumulative
     
     def schedule(self,
                  network: nx.Graph,
@@ -121,10 +124,73 @@ class ParametricScheduler(Scheduler):
                 ]
                 for node, tasks in schedule.items()
             }
+
+        
+
         queue = self.initial_priority(network, task_graph)
+
+        # print("\n\nschedule before pruning:")
+        # for node, tasks in schedule.items():
+        #     print(f"Node {node}:")
+        #     for task in tasks:
+        #         print(f"Task {task.name} starts at {task.start} and ends at {task.end}")
+        #     print()
+
+        # print("\nqueue before pruning:")
+        # print(queue)
+        
+
+
+        # the code for comulative scheduling (don't need it for the residual scheduling)
+        # =============================================
+        # the following two loops are for cumulative scheduling (scheduling all graphs together with non-preemptive approach)
+
+        if self.cumulative:
+            # remove tasks that have already been scheduled and their start time is less than min_start_time
+            for _, tasks in schedule.items():
+                for task in tasks:
+                    # if task.start < min_start_time:
+                    if task.start < 0:
+                        queue.remove(task.name)
+
+            # remove tasks that have already been scheduled but their start time is greater than min_start_time from the schedule
+
+            removed_tasks = []
+            for _, tasks in schedule.items():
+                for task in tasks[:]:  # Iterate over a copy of the list
+                    # if task.start > min_start_time:
+                    if task.start > 0:
+                        tasks.remove(task)
+                        removed_tasks.append(task.name)
+
+            for removed in removed_tasks:
+                # check if it has any scheduled parents
+                for parent in task_graph.predecessors(removed):
+                    # check if the parent is in the schedule
+                    for _, tasks in schedule.items():
+                        for task in tasks:
+                            if task.name == parent:
+                                task_graph.nodes[parent]["scheduled_task"] = task
+        # =============================================
+
         schedule = {node: [] for node in network.nodes} if schedule is None else deepcopy(schedule)
+
+
+        # print("\n\nschedule after pruning:")
+        # for node, tasks in schedule.items():
+        #     print(f"Node {node}:")
+        #     for task in tasks:
+        #         print(f"Task {task.name} starts at {task.start} and ends at {task.end}")
+        #     print()
+        # print("\nqueue after pruning:")
+        # print(queue)
+
         while queue:
+            # print queue wihout line break
+            # print(queue)
             self.insert_task(network, task_graph, schedule, queue.pop(0))
+
+        # print()
 
         schedule = {
             node: [
